@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Inspeção Predial">
+<meta name="theme-color" content="#152F44">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAEmklEQVR4nO3cwVHkQAxGYbFFCsSxSWwYnDkQEAfOBLqHraJcw9jr8S+ppe73BcAM7kdbzYCfXn7/MeCqX6PfAHojIEgICBICgoSAICEgSAgIEgKChIAgISBICAgSAoKEgCAhIEgICBICgoSAICEgSAgIEgKChIAgISBICAiS5/yXfP98zX/RdXy8fWW+3FPaPxbSTbKckjICIp2BojMKn4GoZ6zo6x8bEPVUELoKgQFRTx1xaxE1Ax2/4+STwjryL3tIQHvfBt2kSVsC/1sY9VSwd7Xd72XOAVFPHTkNZXyUQT2jJFx5z4Dupk09Y929/o6bUOwORD0VhK4Cn8ZD4hYQvzbsxWu9Ancg7l91xK0FtzBICAgSAoKEgCAhIEgICBICgoSAICEgSAgIEgKChIAgISBICAgSAoKEgCAhIEgICBICqqjRH5gTUDn/6unSEAHVsu2mRUMEVNr752vxjAiokL1WKjdEQFUcV1K2IQIq4UwfNRsioPHOl1FwJCKgwS4EUaohAuqn1EMHCGikC3tJqXqMgAaaoB4joFFKzTEKAhrgWj0Ftx8joHwz1WME1ELZeoyAks0xOG8RUJ756jECSjPNsesGAWWYbHDeIqBwE9djBFRTl3qMgKJNOThvEVCg6esxAooz67HrBgGFmHtw3iIgf+vUYwRURNN6jIDcrTA4bxGQp9XqMQJytMix6wYB+VhqcN4iIAfL1mMENMoc9RgB6RYcnLcISLJ4PUZAijWPXTcI6KKVB+et3gGN2gOo51vjgHo9zXTKeqxvQAOfZsrgvNUyoJ9LmNYQ9dzoF9DAR5l2uV1mahbQwEeZMjjf1SmggY8ypZ49bQJ66FGmoe/kpBXqsS4BPdqEb0MMzgcaBHStBq+GqOdYg4Aur4feUJG7YWUNArJBDTE4n9EjIEtviHpOahOQDb2XnbFgPdYrIMtaJAbn85oFZFeXKvTXSMvWYx0DssiGOHY9qmVAFtMQg/MFXQMy74ao55rGAVn8PBTx6pPpHZA5NcTgfFn7gExuiHoUMwRkQkMcu0STBGSJuwLbz9Y8AeWgnhtTBRS9utTz01QBWeQaU89dswVkMStNPXsmDMhY70RzBmSuDZHjgWkDMqeFp55jMwdk8vJTz39NHpAJEVDPGfMHZJdSoJ6TlgjICCLMKgHZIw1R23kLBWTnyqCeh6wVkB328fH2RT2PWi4g2wmFdK55Hv0GhqEYFyvuQHBEQJAQECQEBAkBQUJAkBAQJAQECQFBQkCQEBAkBAQJAUFCQJAQECQEBAkBQUJAkAQGxOMH64hbC7eA+BPjXrzWi1sYJLEBcRerIHQVPAO6uyvS0Fh3r7/jvJFxC6OhURKuvHNAe2nTUL69a+573PHfgWiogpx6zOzp5fcf36/4z3EunPmD5F/2qICMLaeYoB/awCGabaaOuLWIPYXRUAWhqxB+jKehsaKvf+AMdIORKFnOj25eQN8oKVTylj8gIMyET+MhISBICAgSAoKEgCAhIEgICBICgoSAICEgSAgIEgKChIAgISBICAgSAoKEgCAhIEgICBICgoSAICEgSP4CgqGGWuTVEC4AAAAASUVORK5CYII=">
+<title>Checklist de Inspeção Predial</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root{
+  --bg:#EEF1EF;
+  --paper:#FFFFFF;
+  --ink:#16232E;
+  --ink-soft:#5B6B74;
+  --primary:#234E70;
+  --primary-dark:#152F44;
+  --ok:#3A7D5C;
+  --ok-bg:#E3F0E9;
+  --alert:#AE3B2E;
+  --alert-bg:#F7E6E2;
+  --warn:#B5822A;
+  --warn-bg:#FBF0DB;
+  --line:#DBE1DD;
+  --radius:12px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'IBM Plex Sans',sans-serif;
+  padding-bottom:100px;
+  -webkit-tap-highlight-color:transparent;
+}
+h1,h2,h3{
+  font-family:'Source Serif 4',serif;
+  margin:0;
+}
+.tag{
+  font-family:'IBM Plex Mono',monospace;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+
+/* HEADER */
+header{
+  background:var(--primary-dark);
+  color:#fff;
+  padding:18px 18px 22px;
+  position:sticky;
+  top:0;
+  z-index:20;
+  box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+header .eyebrow{
+  font-size:11px;
+  color:#9FC0D6;
+  margin-bottom:2px;
+}
+header h1{
+  font-size:20px;
+  font-weight:700;
+  color:#fff;
+}
+.progress-wrap{
+  margin-top:14px;
+}
+.progress-bar{
+  height:6px;
+  background:rgba(255,255,255,.18);
+  border-radius:4px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  background:#7FC9A0;
+  border-radius:4px;
+  transition:width .3s ease;
+}
+.progress-label{
+  font-size:11px;
+  color:#B7CCD8;
+  margin-top:6px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* UNIT INFO */
+.unit-card{
+  background:var(--paper);
+  margin:14px;
+  border-radius:var(--radius);
+  padding:16px;
+  border:1px solid var(--line);
+}
+.unit-card h2{
+  font-size:15px;
+  color:var(--primary-dark);
+  margin-bottom:10px;
+}
+.field-row{margin-bottom:10px;}
+.field-row label{
+  display:block;
+  font-size:11px;
+  color:var(--ink-soft);
+  margin-bottom:4px;
+  font-family:'IBM Plex Mono',monospace;
+  letter-spacing:.02em;
+}
+.field-row input, .field-row textarea{
+  width:100%;
+  padding:9px 10px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  font-family:inherit;
+  font-size:14px;
+  background:#FBFCFB;
+  color:var(--ink);
+}
+.field-row input:focus, .field-row textarea:focus{
+  outline:2px solid var(--primary);
+  outline-offset:1px;
+  background:#fff;
+}
+
+/* SECTIONS */
+.section{
+  margin:14px;
+  border-radius:var(--radius);
+  background:var(--paper);
+  border:1px solid var(--line);
+  overflow:hidden;
+}
+.section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 16px;
+  cursor:pointer;
+  background:#fff;
+}
+.section-head .num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  color:var(--primary);
+  background:#E8EFF3;
+  padding:3px 8px;
+  border-radius:6px;
+  margin-right:10px;
+}
+.section-head h2{
+  font-size:15px;
+  flex:1;
+  color:var(--ink);
+}
+.section-count{
+  font-size:11px;
+  color:var(--ink-soft);
+  font-family:'IBM Plex Mono',monospace;
+  margin-right:8px;
+}
+.chevron{
+  transition:transform .25s ease;
+  color:var(--ink-soft);
+}
+.section.open .chevron{transform:rotate(90deg);}
+.section-body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+  border-top:1px solid transparent;
+}
+.section.open .section-body{
+  border-top:1px solid var(--line);
+}
+
+/* ITEMS */
+.item{
+  padding:14px 16px;
+  border-bottom:1px solid var(--line);
+}
+.item:last-child{border-bottom:none;}
+.item .question{
+  font-size:14px;
+  line-height:1.4;
+  margin-bottom:10px;
+}
+.stamp-row{
+  display:flex;
+  gap:8px;
+  margin-bottom:10px;
+  flex-wrap:wrap;
+}
+.stamp{
+  flex:1;
+  min-width:80px;
+  padding:10px 6px;
+  border-radius:8px;
+  border:2px solid var(--line);
+  background:#fff;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  cursor:pointer;
+  position:relative;
+}
+.stamp.sel-sim{
+  border-color:var(--ok);
+  color:var(--ok);
+  background:var(--ok-bg);
+  box-shadow:0 0 0 3px rgba(58,125,92,.12);
+}
+.stamp.sel-nao{
+  border-color:var(--alert);
+  color:var(--alert);
+  background:var(--alert-bg);
+  box-shadow:0 0 0 3px rgba(174,59,46,.12);
+}
+.stamp.sel-prej{
+  border-color:var(--warn);
+  color:var(--warn);
+  background:var(--warn-bg);
+  box-shadow:0 0 0 3px rgba(181,130,42,.12);
+}
+.item textarea{
+  width:100%;
+  min-height:44px;
+  padding:9px 10px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  font-family:inherit;
+  font-size:13px;
+  color:var(--ink);
+  background:#FBFCFB;
+  resize:vertical;
+}
+.item textarea:focus{outline:2px solid var(--primary); outline-offset:1px; background:#fff;}
+.item textarea::placeholder{color:#A6B1B7;}
+.extra-field{margin-top:8px;}
+.extra-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:6px;
+}
+.extra-row input{
+  flex:1;
+}
+.extra-remove{
+  flex-shrink:0;
+  width:28px;
+  height:28px;
+  border-radius:6px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--alert);
+  font-size:16px;
+  line-height:1;
+  cursor:pointer;
+}
+.extra-add-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  border:1.5px dashed var(--primary);
+  background:#fff;
+  color:var(--primary);
+  font-size:12px;
+  font-weight:600;
+  font-family:'IBM Plex Sans',sans-serif;
+  padding:7px 12px;
+  border-radius:7px;
+  cursor:pointer;
+}
+.extra-field input{
+  width:100%;
+  padding:8px 10px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  font-size:13px;
+  font-family:inherit;
+}
+
+/* PHOTO */
+.photo-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+.photo-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 12px;
+  border-radius:8px;
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  font-size:12px;
+  font-family:'IBM Plex Sans',sans-serif;
+  font-weight:500;
+  cursor:pointer;
+}
+.photo-thumb{
+  width:52px;height:52px;
+  border-radius:6px;
+  object-fit:cover;
+  border:1px solid var(--line);
+}
+.photo-check-item{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:12px 16px;
+  border-bottom:1px solid var(--line);
+}
+.photo-check-item:last-child{border-bottom:none;}
+.photo-check-item .top-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.photo-check-item .bottom-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.photo-check-item .label{flex:1; font-size:13px;}
+.photo-check-item .thumb-empty{
+  width:52px;height:52px;
+  border-radius:6px;
+  border:1.5px dashed var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink-soft);
+  font-size:10px;
+}
+.photo-confirm-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 12px;
+  border-radius:8px;
+  border:1.5px solid var(--line);
+  background:#fff;
+  color:var(--ink-soft);
+  font-size:12px;
+  font-family:'IBM Plex Sans',sans-serif;
+  font-weight:500;
+  cursor:pointer;
+}
+.photo-confirm-btn.confirmed{
+  background:var(--ok-bg);
+  border-color:var(--ok);
+  color:var(--ok);
+  font-weight:600;
+}
+
+/* TEXT-ONLY ITEM */
+.text-item .question{margin-bottom:8px;}
+
+/* FOOTER BAR */
+.footer-bar{
+  position:fixed;
+  bottom:0; left:0; right:0;
+  background:#fff;
+  border-top:1px solid var(--line);
+  padding:10px 14px;
+  display:flex;
+  gap:10px;
+  z-index:30;
+  box-shadow:0 -2px 10px rgba(0,0,0,.08);
+}
+.footer-btn{
+  flex:1;
+  padding:12px;
+  border-radius:9px;
+  border:none;
+  font-family:'IBM Plex Sans',sans-serif;
+  font-weight:600;
+  font-size:13px;
+  cursor:pointer;
+}
+.footer-btn.primary{background:var(--primary); color:#fff;}
+.footer-btn.ghost{background:#F1F3F2; color:var(--ink);}
+
+/* REPORT MODAL */
+.modal-overlay{
+  position:fixed; inset:0;
+  background:rgba(21,47,68,.55);
+  z-index:50;
+  display:none;
+  align-items:flex-end;
+}
+.modal-overlay.show{display:flex;}
+.modal{
+  background:#fff;
+  width:100%;
+  max-height:85vh;
+  border-radius:16px 16px 0 0;
+  padding:18px;
+  overflow-y:auto;
+}
+.modal h2{font-size:16px; margin-bottom:10px; color:var(--primary-dark);}
+.modal pre{
+  white-space:pre-wrap;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11.5px;
+  line-height:1.6;
+  background:#F7F8F6;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:12px;
+  color:var(--ink);
+}
+.modal-actions{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;}
+.modal-actions button{
+  flex:1 1 45%; padding:11px; border-radius:8px; border:none; font-weight:600; font-size:13px; cursor:pointer;
+}
+.save-indicator{
+  font-size:10px;
+  color:#B7CCD8;
+  text-align:right;
+  margin-top:4px;
+}
+
+/* PRINT / PDF VISUAL REPORT */
+#print-report-wrap{ display:none; }
+.pr-page{
+  font-family:'IBM Plex Sans', sans-serif;
+  color:#16232E;
+  max-width:760px;
+  margin:0 auto;
+  padding:10px;
+}
+.pr-header{
+  border-bottom:3px solid #234E70;
+  padding-bottom:14px;
+  margin-bottom:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+}
+.pr-eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#234E70;
+}
+.pr-title{
+  font-family:'Source Serif 4',serif;
+  font-size:23px;
+  font-weight:700;
+  color:#152F44;
+  margin:4px 0 0;
+}
+.pr-stamp-summary{
+  text-align:right;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  color:#5B6B74;
+}
+.pr-stamp-summary .big{
+  font-size:20px;
+  font-weight:700;
+  color:#3A7D5C;
+  display:block;
+}
+.pr-meta{
+  background:#F4F6F5;
+  border:1px solid #DBE1DD;
+  border-radius:8px;
+  padding:12px 16px;
+  margin-bottom:20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px 24px;
+}
+.pr-meta div span.k{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:8.5px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:#8A9299;
+}
+.pr-meta div span.v{
+  font-size:12px;
+  color:#16232E;
+}
+.pr-meta .full{ grid-column:1 / -1; }
+.pr-section-title{
+  font-family:'Source Serif 4',serif;
+  font-size:14.5px;
+  font-weight:700;
+  background:#EEF1EF;
+  padding:7px 12px;
+  border-left:4px solid #234E70;
+  margin:22px 0 8px;
+  color:#152F44;
+  page-break-after:avoid;
+}
+.pr-item{
+  padding:7px 2px;
+  border-bottom:1px solid #E9ECEA;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+  page-break-inside:avoid;
+}
+.pr-item .q{
+  font-size:11.5px;
+  line-height:1.4;
+  flex:1;
+}
+.pr-item .q .obs{
+  display:block;
+  font-size:10px;
+  color:#5B6B74;
+  font-style:italic;
+  margin-top:3px;
+}
+.pr-badge{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9.5px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+  padding:4px 11px;
+  border-radius:20px;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.pr-badge-ok{ background:#E3F0E9; color:#3A7D5C; border:1px solid #3A7D5C; }
+.pr-badge-alert{ background:#F7E6E2; color:#AE3B2E; border:1px solid #AE3B2E; }
+.pr-badge-warn{ background:#FBF0DB; color:#B5822A; border:1px solid #B5822A; }
+.pr-badge-empty{ background:#F1F3F2; color:#9AA5AC; border:1px solid #DBE1DD; }
+.pr-text-item{ padding:7px 2px; border-bottom:1px solid #E9ECEA; page-break-inside:avoid; }
+.pr-text-item .q{ font-size:11.5px; font-weight:600; margin-bottom:3px; color:#152F44; }
+.pr-text-item .a{ font-size:11px; color:#16232E; }
+.pr-text-item .a.empty{ color:#9AA5AC; font-style:italic; }
+.pr-photo-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px 24px;
+  margin-top:6px;
+}
+.pr-photo-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  padding:3px 0;
+}
+.pr-photo-check{
+  width:15px; height:15px; border-radius:4px;
+  border:1.5px solid #DBE1DD;
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; flex-shrink:0;
+}
+.pr-photo-check.done{ background:#E3F0E9; border-color:#3A7D5C; color:#3A7D5C; }
+.pr-footer{
+  margin-top:26px;
+  padding-top:10px;
+  border-top:1px solid #DBE1DD;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:#9AA5AC;
+  text-align:center;
+}
+@page{ margin:14mm 12mm; }
+@media print{
+  body > *:not(#print-report-wrap){ display:none !important; }
+  #print-report-wrap{ display:block !important; }
+  * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<div id="print-report-wrap"><div class="pr-page" id="print-report"></div></div>
+
+<header>
+  <div class="eyebrow tag">Corregedoria &middot; Inspeção Predial</div>
+  <h1 id="unit-title">Novo checklist</h1>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-label">
+      <span id="progress-text">0 de 0 itens respondidos</span>
+      <span id="save-indicator">salvo</span>
+    </div>
+  </div>
+</header>
+
+<div class="unit-card">
+  <h2 class="tag">Dados da unidade visitada</h2>
+  <div class="field-row"><label>Comarca</label><input id="f-comarca" placeholder="Ex: São Domingos do Norte"></div>
+  <div class="field-row"><label>Nome oficial do fórum</label><input id="f-nome" placeholder="Ex: Des. José de Barros Wanderley"></div>
+  <div class="field-row"><label>Endereço completo</label><textarea id="f-endereco" rows="2" placeholder="Rod. ES 080, Km 44..."></textarea></div>
+  <div class="field-row"><label>Juiz Diretor do Foro</label><input id="f-juiz"></div>
+  <div class="field-row"><label>Secretário(a) de gestão do Foro</label><input id="f-secretario"></div>
+  <div class="field-row"><label>Servidores</label><div id="servidores-list"></div></div>
+  <div class="field-row"><label>Data da visita</label><input id="f-data" type="date"></div>
+</div>
+
+<div id="sections"></div>
+
+<div class="section" id="photo-section">
+  <div class="section-head" onclick="toggleSection('photo-section')">
+    <span class="num">FOTO</span>
+    <h2>Relatório fotográfico</h2>
+    <span class="section-count" id="photo-count">0/12</span>
+    <span class="chevron">›</span>
+  </div>
+  <div class="section-body" id="photo-body"></div>
+</div>
+
+<div class="footer-bar">
+  <button class="footer-btn ghost" onclick="confirmReset()">Nova visita</button>
+  <button class="footer-btn primary" onclick="openReport()">Gerar relatório</button>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <h2>Resumo da inspeção</h2>
+    <pre id="report-text"></pre>
+    <div class="modal-actions">
+      <button style="background:#F1F3F2;color:var(--ink);" onclick="closeReport()">Fechar</button>
+      <button style="background:var(--primary);color:#fff;" onclick="copyReport()">Copiar texto</button>
+      <button style="background:var(--ok);color:#fff;" onclick="generatePDF()">PDF</button>
+      <button style="background:#2B5C8A;color:#fff;" onclick="generateDOCX()">Google Docs</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/docx@8.2.0/build/index.umd.cjs"></script>
+<script>
+const STAMP_LABELS_DEFAULT = ['Sim','Não','Prejudicado'];
+const STAMP_LABELS_ACESSO = ['Comum','Segregado','Prejudicado'];
+
+const SECTIONS = [
+  { id:'s1', num:'01', title:'Infraestrutura e Conservação (Estado Físico)', items:[
+    { id:'i1', q:'Fachada: pintura está em dia?', type:'stamp' },
+    { id:'i2', q:'Fachada: nome do fórum está visível?', type:'stamp' },
+    { id:'i3', q:'Piso e paredes: estão livres de rachaduras e infiltrações?', type:'stamp' },
+    { id:'i4', q:'Piso e paredes: estão livres de mofo e azulejos soltos?', type:'stamp' },
+    { id:'i5', q:'Teto e cobertura: sem sinais de goteiras ou manchas de umidade?', type:'stamp' },
+    { id:'i6', q:'Teto e cobertura: forro está íntegro, sem partes caídas?', type:'stamp' },
+    { id:'i7', q:'Esquadrias: janelas e portas abrem e fecham corretamente?', type:'stamp' },
+    { id:'i8', q:'Esquadrias: vidros estão intactos, sem quebras?', type:'stamp' },
+    { id:'i9', q:'Mobiliário: mesas e cadeiras estão em bom estado?', type:'stamp' },
+    { id:'i10', q:'Mobiliário: armários são adequados?', type:'stamp' },
+    { id:'i11', q:'Sustentabilidade: placas solares operantes?', type:'stamp' },
+    { id:'i12', q:'Sustentabilidade: há lixeiras de coleta seletiva?', type:'stamp' },
+    { id:'i13', q:'Manutenção SEI: existem números de chamados anotados para reparos urgentes?', type:'stamp', extra:{label:'Números dos chamados', showOn:'Sim'} },
+  ]},
+  { id:'s2', num:'02', title:'Acessibilidade (Res. CNJ 401/2021 e 41/2023)', items:[
+    { id:'i14', q:'Rampas: há acesso autônomo da calçada até o interior?', type:'stamp' },
+    { id:'i15', q:'Elevador: está funcionando?', type:'stamp' },
+    { id:'i16', q:'Estacionamento: vagas para idosos e PcD estão demarcadas e próximas à entrada?', type:'stamp' },
+    { id:'i17', q:'Sanitários: há banheiro adaptado para PcD no(s) pavimento(s) de atendimento — masculino?', type:'stamp' },
+    { id:'i18', q:'Sanitários: há banheiro adaptado para PcD no(s) pavimento(s) de atendimento — feminino?', type:'stamp' },
+    { id:'i19', q:'Dignidade no Acesso: o fluxo de PcD é comum ao público?', type:'stamp', labels:STAMP_LABELS_ACESSO },
+    { id:'i20', q:'Animais de Assistência: é permitida a entrada de cão-guia?', type:'stamp' },
+    { id:'i21', q:'Animais de Assistência: há portaria tratando sobre o tema?', type:'stamp' },
+  ]},
+  { id:'s3', num:'03', title:'Segurança Institucional (Res. CNJ 435/2021)', items:[
+    { id:'i22', q:'Pórtico/Metais: detector de metais está instalado?', type:'stamp' },
+    { id:'i23', q:'Pórtico/Metais: há vigilante operando o detector?', type:'stamp' },
+    { id:'i24', q:'Identificação: há cadastro de visitantes com foto?', type:'stamp' },
+    { id:'i25', q:'Identificação: há entrega de crachás?', type:'stamp' },
+    { id:'i26', q:'Monitoramento: câmeras (CFTV) cobrem áreas comuns e corredores?', type:'stamp' },
+    { id:'i27', q:'Policiamento: há segurança privada e/ou policial militar no local?', type:'stamp' },
+    { id:'i28', q:'Fluxo de Presos: entrada de viaturas é isolada do público?', type:'stamp' },
+    { id:'i29', q:'Fluxo de Presos: os corredores garantem ausência de contato visual entre presos e vítimas?', type:'stamp' },
+  ]},
+  { id:'s4', num:'04', title:'Áreas de Apoio e Operacional', items:[
+    { id:'i30', q:'Arquivo: espaço é ventilado?', type:'stamp' },
+    { id:'i31', q:'Arquivo: caixas estão organizadas e fora do chão (risco de alagamento)?', type:'stamp' },
+    { id:'i32', q:'Sala Passiva: há espaço exclusivo para o "excluído digital" realizar atos virtuais?', type:'stamp' },
+    { id:'i33', q:'Sala Passiva: o agendamento é feito por meio do Google Agenda?', type:'stamp' },
+    { id:'i34', q:'Copa/Cozinha: eletrodomésticos e armários estão em boas condições de higiene e conservação?', type:'stamp' },
+  ]},
+  { id:'s5', num:'05', title:'Pessoal', items:[
+    { id:'i36', q:'Quem monitora os trabalhos dos oficiais de justiça?', type:'text', placeholder:'Nome' },
+    { id:'i37', q:'Controle de mandados distribuídos — como é feito?', type:'text', placeholder:'Descrição' },
+    { id:'i38', q:'Último levantamento bimestral (art. 511, IX) — via SEI?', type:'stamp', extra:{label:'Número do SEI', showOn:'Sim'} },
+    { id:'i39', q:'Pasta de controle de comparecimento dos oficiais (art. 511, XIII)', type:'stamp' },
+    { id:'i40', q:'Há expedientes disciplinares em curso (Provimento Conjunto TJES nº 1/2021)?', type:'stamp', extra:{label:'Número do expediente', showOn:'Sim'} },
+    { id:'i41', q:'Cadastramento de bens apreendidos é feito no SNGB?', type:'stamp' },
+    { id:'i42', q:'Há bens apreendidos pendentes de destinação?', type:'stamp' },
+    { id:'i43', q:'Há armas de fogo pendentes de destinação ou destruição?', type:'text', placeholder:'Observações' },
+  ]},
+];
+
+const PHOTO_ITEMS = [
+  'Fachada com o nome do Fórum','Calçada e vagas, mostrando acessibilidade','Entrada (catraca, pórtico, etc.)',
+  'Rampas e/ou elevadores','Banheiros','Arquivo','Sala passiva','Bens apreendidos','Armas apreendidas',
+  'Placas solares','CFTV','SEI e chamados de achados anteriores (digitalizar)'
+];
+
+let state = {
+  unit:{ comarca:'', nome:'', endereco:'', juiz:'', secretario:'', servidores:'', data:'' },
+  answers:{},   // itemId -> { stamp, obs, extra }
+  photos:{},    // photoLabel -> count (photo taken)
+  photoConfirmed:{}  // photoLabel -> boolean (confirmed even without photo)
+};
+let saveTimer = null;
+
+function countAnswerable(){
+  let total=0, done=0;
+  SECTIONS.forEach(s=>s.items.forEach(it=>{
+    total++;
+    const a = state.answers[it.id];
+    if(it.type==='stamp' && a && a.stamp) done++;
+    if(it.type==='text' && a && a.obs && a.obs.trim()) done++;
+  }));
+  return {total, done};
+}
+
+function updateProgress(){
+  const {total, done} = countAnswerable();
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-text').textContent = `${done} de ${total} itens respondidos`;
+  const title = state.unit.nome ? `Fórum ${state.unit.nome}` : (state.unit.comarca || 'Novo checklist');
+  document.getElementById('unit-title').textContent = title;
+}
+
+function renderSections(){
+  const root = document.getElementById('sections');
+  root.innerHTML = '';
+  SECTIONS.forEach(sec=>{
+    const secEl = document.createElement('div');
+    secEl.className = 'section';
+    secEl.id = sec.id;
+    const answeredInSec = sec.items.filter(it=>{
+      const a = state.answers[it.id];
+      return (it.type==='stamp' && a && a.stamp) || (it.type==='text' && a && a.obs && a.obs.trim());
+    }).length;
+    secEl.innerHTML = `
+      <div class="section-head" onclick="toggleSection('${sec.id}')">
+        <span class="num">${sec.num}</span>
+        <h2>${sec.title}</h2>
+        <span class="section-count" id="count-${sec.id}">${answeredInSec}/${sec.items.length}</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="section-body"><div style="padding:0;">${sec.items.map(renderItem).join('')}</div></div>
+    `;
+    root.appendChild(secEl);
+  });
+}
+
+function renderItem(it){
+  const a = state.answers[it.id] || {};
+  if(it.type==='text'){
+    return `
+      <div class="item text-item">
+        <div class="question">${it.q}</div>
+        <textarea placeholder="${it.placeholder||'Observações'}" oninput="setText('${it.id}', this.value)">${a.obs||''}</textarea>
+      </div>
+    `;
+  }
+  const labels = it.labels || STAMP_LABELS_DEFAULT;
+  const keys = ['sim','nao','prej'];
+  const stampsHtml = labels.map((lab,i)=>{
+    const key = keys[i];
+    const sel = a.stamp===lab ? `sel-${key}` : '';
+    return `<button type="button" class="stamp ${sel}" onclick="setStamp('${it.id}','${lab.replace(/'/g,"\\'")}', this)">${lab}</button>`;
+  }).join('');
+  const showExtra = it.extra && a.stamp === it.extra.showOn;
+  let extraHtml = '';
+  if(it.extra){
+    const list = (a.extraList && a.extraList.length) ? a.extraList : [''];
+    const rows = list.map((val, idx) => `
+      <div class="extra-row">
+        <input placeholder="${it.extra.label}" value="${escapeHtml(val)}" oninput="setExtraAt('${it.id}', ${idx}, this.value)">
+        ${list.length > 1 ? `<button type="button" class="extra-remove" onclick="removeExtraField('${it.id}', ${idx})">&times;</button>` : ''}
+      </div>
+    `).join('');
+    extraHtml = `
+      <div class="extra-field" style="display:${showExtra?'block':'none'}" id="extra-${it.id}">
+        ${rows}
+        <button type="button" class="extra-add-btn" onclick="addExtraField('${it.id}')">+ Adicionar chamado</button>
+      </div>`;
+  }
+  return `
+    <div class="item">
+      <div class="question">${it.q}</div>
+      <div class="stamp-row">${stampsHtml}</div>
+      ${extraHtml}
+      <textarea placeholder="Observações" oninput="setText('${it.id}', this.value)">${a.obs||''}</textarea>
+    </div>
+  `;
+}
+
+function renderPhotos(){
+  const body = document.getElementById('photo-body');
+  body.innerHTML = PHOTO_ITEMS.map((label,idx)=>{
+    const taken = (state.photos[label] || 0) > 0;
+    const confirmed = !!(state.photoConfirmed && state.photoConfirmed[label]);
+    const thumb = taken
+      ? `<div style="width:52px;height:52px;border-radius:6px;background:var(--ok-bg);border:1px solid var(--ok);display:flex;align-items:center;justify-content:center;color:var(--ok);font-size:18px;">✓</div>`
+      : `<div class="thumb-empty">sem foto</div>`;
+    return `
+      <div class="photo-check-item">
+        <div class="top-row">
+          <div class="label">${label}</div>
+          ${thumb}
+        </div>
+        <div class="bottom-row">
+          <button type="button" class="photo-confirm-btn ${confirmed ? 'confirmed' : ''}" onclick="onConfirmPhoto('${label.replace(/'/g,"\\'")}', ${!confirmed}, this)">${confirmed ? '✓ Confirmado' : 'Confirmar'}</button>
+          <input type="file" accept="image/*" capture="environment" id="file-${idx}" style="display:none" onchange="onPhoto('${label.replace(/'/g,"\\'")}', ${idx})">
+          <button class="photo-btn" onclick="document.getElementById('file-${idx}').click()">${taken? 'Refazer':'Câmera'}</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+  updatePhotoCount();
+}
+
+function updatePhotoCount(){
+  const totalDone = PHOTO_ITEMS.filter(label => (state.photos[label]||0) > 0 || (state.photoConfirmed && state.photoConfirmed[label])).length;
+  document.getElementById('photo-count').textContent = `${totalDone}/${PHOTO_ITEMS.length}`;
+}
+
+function onPhoto(label, idx){
+  const input = document.getElementById(`file-${idx}`);
+  if(input.files && input.files[0]){
+    state.photos[label] = 1;
+    renderPhotos();
+    scheduleSave();
+  }
+}
+
+function onConfirmPhoto(label, newValue, btnEl){
+  state.photoConfirmed = state.photoConfirmed || {};
+  state.photoConfirmed[label] = newValue;
+  if(btnEl){
+    btnEl.classList.toggle('confirmed', newValue);
+    btnEl.textContent = newValue ? '✓ Confirmado' : 'Confirmar';
+    btnEl.setAttribute('onclick', `onConfirmPhoto('${label.replace(/'/g,"\\'")}', ${!newValue}, this)`);
+  }
+  updatePhotoCount();
+  scheduleSave();
+}
+
+function findItemById(id){
+  for(const sec of SECTIONS){
+    const it = sec.items.find(i=>i.id===id);
+    if(it) return it;
+  }
+  return null;
+}
+function findSectionByItemId(id){
+  return SECTIONS.find(sec=>sec.items.some(i=>i.id===id));
+}
+function updateSectionCount(itemId){
+  const sec = findSectionByItemId(itemId);
+  if(!sec) return;
+  const answeredInSec = sec.items.filter(it=>{
+    const a = state.answers[it.id];
+    return (it.type==='stamp' && a && a.stamp) || (it.type==='text' && a && a.obs && a.obs.trim());
+  }).length;
+  const countEl = document.getElementById(`count-${sec.id}`);
+  if(countEl) countEl.textContent = `${answeredInSec}/${sec.items.length}`;
+}
+
+function setStamp(itemId, label, btnEl){
+  state.answers[itemId] = state.answers[itemId] || {};
+  const newVal = state.answers[itemId].stamp === label ? null : label;
+  state.answers[itemId].stamp = newVal;
+
+  const parent = btnEl.parentElement;
+  const map = ['sel-sim','sel-nao','sel-prej'];
+  Array.from(parent.children).forEach(b=>b.classList.remove(...map));
+  if(newVal){
+    const idx = Array.from(parent.children).indexOf(btnEl);
+    btnEl.classList.add(map[idx]);
+  }
+
+  const it = findItemById(itemId);
+  if(it && it.extra){
+    const extraDiv = document.getElementById(`extra-${itemId}`);
+    if(extraDiv){
+      extraDiv.style.display = (newVal === it.extra.showOn) ? 'block' : 'none';
+      const sectionBody = extraDiv.closest('.section-body');
+      if(sectionBody){
+        const prevTransition = sectionBody.style.transition;
+        sectionBody.style.transition = 'none';
+        sectionBody.style.maxHeight = (sectionBody.scrollHeight + 40) + 'px';
+        void sectionBody.offsetHeight;
+        sectionBody.style.transition = prevTransition;
+      }
+    }
+  }
+
+  updateSectionCount(itemId);
+  updateProgress();
+  scheduleSave();
+}
+function setText(itemId, val){
+  state.answers[itemId] = state.answers[itemId] || {};
+  state.answers[itemId].obs = val;
+  updateProgress();
+  scheduleSave();
+}
+function renderExtraFieldDOM(itemId){
+  const it = findItemById(itemId);
+  if(!it || !it.extra) return;
+  const container = document.getElementById(`extra-${itemId}`);
+  if(!container) return;
+  const a = state.answers[itemId] || {};
+  const list = (a.extraList && a.extraList.length) ? a.extraList : [''];
+  const rows = list.map((val, idx) => `
+    <div class="extra-row">
+      <input placeholder="${it.extra.label}" value="${escapeHtml(val)}" oninput="setExtraAt('${itemId}', ${idx}, this.value)">
+      ${list.length > 1 ? `<button type="button" class="extra-remove" onclick="removeExtraField('${itemId}', ${idx})">&times;</button>` : ''}
+    </div>
+  `).join('');
+  container.innerHTML = rows + `<button type="button" class="extra-add-btn" onclick="addExtraField('${itemId}')">+ Adicionar chamado</button>`;
+
+  // Resize the parent collapsible section instantly (no animation) so new
+  // rows/buttons are never clipped by the old collapsed height.
+  const sectionBody = container.closest('.section-body');
+  if(sectionBody){
+    const prevTransition = sectionBody.style.transition;
+    sectionBody.style.transition = 'none';
+    sectionBody.style.maxHeight = (sectionBody.scrollHeight + 40) + 'px';
+    void sectionBody.offsetHeight;
+    sectionBody.style.transition = prevTransition;
+  }
+}
+
+function setExtraAt(itemId, idx, val){
+  state.answers[itemId] = state.answers[itemId] || {};
+  if(!state.answers[itemId].extraList || !state.answers[itemId].extraList.length) state.answers[itemId].extraList = [''];
+  state.answers[itemId].extraList[idx] = val;
+  scheduleSave();
+}
+function addExtraField(itemId){
+  if(document.activeElement) document.activeElement.blur();
+  state.answers[itemId] = state.answers[itemId] || {};
+  if(!state.answers[itemId].extraList || !state.answers[itemId].extraList.length) state.answers[itemId].extraList = [''];
+  state.answers[itemId].extraList.push('');
+  renderExtraFieldDOM(itemId);
+  scheduleSave();
+}
+function removeExtraField(itemId, idx){
+  if(document.activeElement) document.activeElement.blur();
+  state.answers[itemId] = state.answers[itemId] || {};
+  if(!state.answers[itemId].extraList || !state.answers[itemId].extraList.length) state.answers[itemId].extraList = [''];
+  state.answers[itemId].extraList.splice(idx, 1);
+  if(state.answers[itemId].extraList.length === 0) state.answers[itemId].extraList = [''];
+  renderExtraFieldDOM(itemId);
+  scheduleSave();
+}
+
+let openSections = new Set(['s1']);
+function toggleSection(id){
+  if(openSections.has(id)) openSections.delete(id); else openSections.add(id);
+  applyOpenState();
+}
+function reopenAll(){ applyOpenState(); }
+function applyOpenState(){
+  document.querySelectorAll('.section').forEach(el=>{
+    const body = el.querySelector('.section-body');
+    if(openSections.has(el.id)){
+      el.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 40 + 'px';
+    } else {
+      el.classList.remove('open');
+      body.style.maxHeight = '0px';
+    }
+  });
+}
+
+['comarca','nome','endereco','juiz','secretario','data'].forEach(key=>{
+  const el = document.getElementById('f-'+key);
+  el.addEventListener('input', ()=>{
+    state.unit[key] = el.value;
+    updateProgress();
+    scheduleSave();
+  });
+});
+
+function renderServidoresList(){
+  const container = document.getElementById('servidores-list');
+  const list = (state.unit.servidoresList && state.unit.servidoresList.length) ? state.unit.servidoresList : [''];
+  container.innerHTML = list.map((val, idx) => `
+    <div class="extra-row">
+      <input placeholder="Nome do(a) servidor(a)" value="${escapeHtml(val)}" oninput="setServidorAt(${idx}, this.value)">
+      ${list.length > 1 ? `<button type="button" class="extra-remove" onclick="removeServidorField(${idx})">&times;</button>` : ''}
+    </div>
+  `).join('') + `<button type="button" class="extra-add-btn" onclick="addServidorField()">+ Adicionar servidor</button>`;
+}
+function setServidorAt(idx, val){
+  if(!state.unit.servidoresList || !state.unit.servidoresList.length) state.unit.servidoresList = [''];
+  state.unit.servidoresList[idx] = val;
+  updateProgress();
+  scheduleSave();
+}
+function addServidorField(){
+  if(document.activeElement) document.activeElement.blur();
+  if(!state.unit.servidoresList || !state.unit.servidoresList.length) state.unit.servidoresList = [''];
+  state.unit.servidoresList.push('');
+  renderServidoresList();
+  scheduleSave();
+}
+function removeServidorField(idx){
+  if(document.activeElement) document.activeElement.blur();
+  if(!state.unit.servidoresList || !state.unit.servidoresList.length) state.unit.servidoresList = [''];
+  state.unit.servidoresList.splice(idx, 1);
+  if(state.unit.servidoresList.length === 0) state.unit.servidoresList = [''];
+  renderServidoresList();
+  scheduleSave();
+}
+
+function scheduleSave(){
+  document.getElementById('save-indicator').textContent = 'salvando…';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{
+    try{
+      localStorage.setItem('current-inspection', JSON.stringify(state));
+      document.getElementById('save-indicator').textContent = 'salvo neste aparelho';
+    }catch(e){
+      document.getElementById('save-indicator').textContent = 'erro ao salvar';
+    }
+  }, 500);
+}
+
+async function loadState(){
+  try{
+    const raw = localStorage.getItem('current-inspection');
+    if(raw){
+      const loaded = JSON.parse(raw);
+      state = Object.assign({unit:{},answers:{},photos:{},photoConfirmed:{}}, loaded);
+    }
+  }catch(e){ /* nothing saved yet */ }
+  ['comarca','nome','endereco','juiz','secretario','data'].forEach(key=>{
+    document.getElementById('f-'+key).value = state.unit[key] || '';
+  });
+  if(!state.unit.servidoresList || !state.unit.servidoresList.length){
+    state.unit.servidoresList = (state.unit.servidores && state.unit.servidores.trim()) ? [state.unit.servidores] : [''];
+  }
+  renderServidoresList();
+  renderSections();
+  applyOpenState();
+  renderPhotos();
+  updateProgress();
+}
+
+async function confirmReset(){
+  if(confirm('Iniciar nova visita? Os dados atuais serão substituídos (o histórico local não é apagado, mas esta tela será limpa).')){
+    state = { unit:{comarca:'',nome:'',endereco:'',juiz:'',secretario:'',servidoresList:[''],data:''}, answers:{}, photos:{}, photoConfirmed:{} };
+    ['comarca','nome','endereco','juiz','secretario','data'].forEach(key=>{
+      document.getElementById('f-'+key).value = '';
+    });
+    renderServidoresList();
+    renderSections();
+    applyOpenState();
+    renderPhotos();
+    updateProgress();
+    localStorage.setItem('current-inspection', JSON.stringify(state));
+  }
+}
+
+function escapeHtml(str){
+  if(!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function servidoresText(u){
+  return (u.servidoresList || []).filter(v=>v && v.trim()).join(', ');
+}
+
+function stampBadgeClass(it, stampValue){
+  if(!stampValue) return 'pr-badge-empty';
+  const labels = it.labels || STAMP_LABELS_DEFAULT;
+  const idx = labels.indexOf(stampValue);
+  if(idx === 0) return 'pr-badge-ok';
+  if(idx === 1) return 'pr-badge-alert';
+  if(idx === 2) return 'pr-badge-warn';
+  return 'pr-badge-empty';
+}
+
+function reportTitle(u){
+  const comarca = u.comarca && u.comarca.trim();
+  const nome = u.nome && u.nome.trim();
+  if(comarca && nome) return `${comarca} - ${nome}`;
+  return comarca || nome || 'Checklist de Inspeção';
+}
+
+function photoStatus(label){
+  const taken = (state.photos[label] || 0) > 0;
+  const confirmed = !!(state.photoConfirmed && state.photoConfirmed[label]);
+  if(taken) return 'foto';
+  if(confirmed) return 'confirmado';
+  return 'pendente';
+}
+function photoDoneCount(){
+  return PHOTO_ITEMS.filter(p => photoStatus(p) !== 'pendente').length;
+}
+
+function nl2br(text){
+  return escapeHtml(text).replace(/\n/g, '<br>');
+}
+function servidoresListHtml(u){
+  const list = (u.servidoresList || []).filter(v=>v && v.trim());
+  if(!list.length) return '—';
+  return list.map(v=>escapeHtml(v)).join('<br>');
+}
+
+function buildReportHTML(){
+  const u = state.unit;
+  const {total, done} = countAnswerable();
+  const totalPhotos = photoDoneCount();
+
+  let html = `
+    <div class="pr-header">
+      <div>
+        <div class="pr-eyebrow">Corregedoria &middot; Inspeção Predial</div>
+        <div class="pr-title">${escapeHtml(reportTitle(u))}</div>
+      </div>
+      <div class="pr-stamp-summary">
+        <span class="big">${done}/${total}</span>
+        itens respondidos
+      </div>
+    </div>
+    <div class="pr-meta">
+      <div><span class="k">Comarca</span><span class="v">${escapeHtml(u.comarca) || '—'}</span></div>
+      <div><span class="k">Data da visita</span><span class="v">${escapeHtml(u.data) || '—'}</span></div>
+      <div class="full"><span class="k">Endereço</span><span class="v">${escapeHtml(u.endereco) || '—'}</span></div>
+      <div><span class="k">Juiz Diretor do Foro</span><span class="v">${escapeHtml(u.juiz) || '—'}</span></div>
+      <div><span class="k">Secretário(a) de gestão</span><span class="v">${escapeHtml(u.secretario) || '—'}</span></div>
+      <div class="full"><span class="k">Servidores</span><span class="v">${servidoresListHtml(u)}</span></div>
+    </div>
+  `;
+
+  SECTIONS.forEach(sec=>{
+    html += `<div class="pr-section-title">${sec.num}. ${escapeHtml(sec.title)}</div>`;
+    sec.items.forEach(it=>{
+      const a = state.answers[it.id] || {};
+      if(it.type === 'text'){
+        const val = a.obs && a.obs.trim();
+        html += `
+          <div class="pr-text-item">
+            <div class="q">${escapeHtml(it.q)}</div>
+            <div class="a ${val ? '' : 'empty'}">${val ? nl2br(a.obs) : '(não preenchido)'}</div>
+          </div>
+        `;
+      } else {
+        const badgeClass = stampBadgeClass(it, a.stamp);
+        const badgeLabel = a.stamp || 'Não respondido';
+        const extraList = a.extraList ? a.extraList.filter(v=>v && v.trim()) : [];
+        let extraBlock = '';
+        if(extraList.length){
+          extraBlock = `<span class="obs">Números:<br>${extraList.map(v=>escapeHtml(v)).join('<br>')}</span>`;
+        }
+        let obsBlock = '';
+        if(a.obs && a.obs.trim()){
+          obsBlock = `<span class="obs">${nl2br(a.obs)}</span>`;
+        }
+        html += `
+          <div class="pr-item">
+            <div class="q">${escapeHtml(it.q)}${extraBlock}${obsBlock}</div>
+            <span class="pr-badge ${badgeClass}">${escapeHtml(badgeLabel)}</span>
+          </div>
+        `;
+      }
+    });
+  });
+
+  html += `<div class="pr-section-title">FOTO — Relatório Fotográfico (${totalPhotos}/${PHOTO_ITEMS.length})</div><div class="pr-photo-grid">`;
+  PHOTO_ITEMS.forEach(p=>{
+    const status = photoStatus(p);
+    const note = status === 'confirmado' ? ' <em style="color:#B5822A;font-size:10px;">(confirmado sem foto)</em>' : '';
+    html += `
+      <div class="pr-photo-item">
+        <div class="pr-photo-check ${status!=='pendente' ? 'done' : ''}">${status!=='pendente' ? '✓' : ''}</div>
+        <span>${escapeHtml(p)}${note}</span>
+      </div>
+    `;
+  });
+  html += `</div>`;
+
+  const now = new Date();
+  html += `<div class="pr-footer">Relatório gerado em ${now.toLocaleDateString('pt-BR')} às ${now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}</div>`;
+
+  return html;
+}
+
+function statusColor(it, stampValue){
+  if(!stampValue) return '9AA5AC';
+  const labels = it.labels || STAMP_LABELS_DEFAULT;
+  const idx = labels.indexOf(stampValue);
+  if(idx===0) return '3A7D5C';
+  if(idx===1) return 'AE3B2E';
+  if(idx===2) return 'B5822A';
+  return '9AA5AC';
+}
+
+function multilineRuns(text, styleOpts){
+  const lines = text.split('\n');
+  const runs = [];
+  lines.forEach((line, i)=>{
+    if(i > 0) runs.push(new docx.TextRun({ break: 1 }));
+    runs.push(new docx.TextRun(Object.assign({ text: line }, styleOpts)));
+  });
+  return runs;
+}
+
+function buildDocxDocument(){
+  const { Document, Paragraph, TextRun, BorderStyle, AlignmentType } = docx;
+  const u = state.unit;
+  const {total, done} = countAnswerable();
+  const totalPhotos = photoDoneCount();
+  const hairline = { bottom:{ color:'DBE1DD', space:6, style:BorderStyle.SINGLE, size:4 } };
+
+  const children = [];
+
+  children.push(new Paragraph({
+    children:[ new TextRun({ text:'CORREGEDORIA · INSPEÇÃO PREDIAL', bold:true, color:'234E70', size:16 }) ],
+    spacing:{ after:80 }
+  }));
+  children.push(new Paragraph({
+    children:[ new TextRun({ text: reportTitle(u), bold:true, color:'152F44', size:44 }) ],
+    spacing:{ after:60 }
+  }));
+  children.push(new Paragraph({
+    children:[ new TextRun({ text:`${done} de ${total} itens respondidos`, color:'5B6B74', size:20 }) ],
+    border: hairline,
+    spacing:{ after:260 }
+  }));
+
+  function metaLine(label, value){
+    children.push(new Paragraph({
+      children:[
+        new TextRun({ text:`${label}:  `, bold:true, color:'8A9299', size:19 }),
+        new TextRun({ text: value || '—', color:'16232E', size:19 }),
+      ],
+      spacing:{ after:80 }
+    }));
+  }
+  function metaListBlock(label, values){
+    children.push(new Paragraph({
+      children:[ new TextRun({ text:`${label}:`, bold:true, color:'8A9299', size:19 }) ],
+      spacing:{ after:40 }
+    }));
+    if(values.length===0){
+      children.push(new Paragraph({ children:[ new TextRun({text:'—', color:'16232E', size:19}) ], spacing:{after:80} }));
+    } else {
+      children.push(new Paragraph({
+        children: multilineRuns(values.join('\n'), {color:'16232E', size:19}),
+        spacing:{ after:80 }
+      }));
+    }
+  }
+  metaLine('Comarca', u.comarca);
+  metaLine('Data da visita', u.data);
+  metaLine('Endereço', u.endereco);
+  metaLine('Juiz Diretor do Foro', u.juiz);
+  metaLine('Secretário(a) de gestão', u.secretario);
+  metaListBlock('Servidores', (u.servidoresList || []).filter(v=>v && v.trim()));
+  children.push(new Paragraph({ text:'', border:hairline, spacing:{ after:200 } }));
+
+  SECTIONS.forEach(sec=>{
+    children.push(new Paragraph({
+      children:[ new TextRun({ text:`${sec.num}. ${sec.title.toUpperCase()}`, bold:true, color:'152F44', size:24 }) ],
+      border: hairline,
+      spacing:{ before:320, after:160 },
+    }));
+
+    sec.items.forEach(it=>{
+      const a = state.answers[it.id] || {};
+      if(it.type === 'text'){
+        const val = a.obs && a.obs.trim();
+        children.push(new Paragraph({
+          children:[ new TextRun({ text:it.q, bold:true, color:'152F44', size:20 }) ],
+          spacing:{ after:40 }
+        }));
+        children.push(new Paragraph({
+          children: val ? multilineRuns(a.obs, {color:'16232E', size:19}) : [ new TextRun({ text:'(não preenchido)', italics:true, color:'9AA5AC', size:19 }) ],
+          spacing:{ after:160 }
+        }));
+      } else {
+        const color = statusColor(it, a.stamp);
+        const badgeLabel = a.stamp || 'Não respondido';
+        const extraList = a.extraList ? a.extraList.filter(v=>v && v.trim()) : [];
+        const hasObs = a.obs && a.obs.trim();
+        children.push(new Paragraph({
+          children:[
+            new TextRun({ text: it.q + '  —  ', color:'16232E', size:20 }),
+            new TextRun({ text: badgeLabel.toUpperCase(), bold:true, color, size:19 }),
+          ],
+          spacing:{ after: (extraList.length || hasObs) ? 30 : 140 }
+        }));
+        if(extraList.length){
+          children.push(new Paragraph({
+            children:[
+              new TextRun({ text:'Números:', italics:true, color:'777777', size:18 }),
+              new TextRun({ break:1 }),
+              ...multilineRuns(extraList.join('\n'), {italics:true, color:'777777', size:18})
+            ],
+            spacing:{ after: hasObs ? 30 : 140 }
+          }));
+        }
+        if(hasObs){
+          children.push(new Paragraph({
+            children: multilineRuns(a.obs, {italics:true, color:'777777', size:18}),
+            spacing:{ after:140 }
+          }));
+        }
+      }
+    });
+  });
+
+  children.push(new Paragraph({
+    children:[ new TextRun({ text:`FOTO — RELATÓRIO FOTOGRÁFICO (${totalPhotos}/${PHOTO_ITEMS.length})`, bold:true, color:'152F44', size:24 }) ],
+    border: hairline,
+    spacing:{ before:320, after:160 },
+  }));
+  PHOTO_ITEMS.forEach(p=>{
+    const status = photoStatus(p);
+    const label = status === 'confirmado' ? `${p}  (confirmado sem foto)` : p;
+    children.push(new Paragraph({
+      children:[ new TextRun({ text:(status!=='pendente' ? '☑  ' : '☐  ') + label, italics: status==='confirmado', color: status!=='pendente' ? '3A7D5C' : '16232E', size:20 }) ],
+      spacing:{ after:60 }
+    }));
+  });
+
+  const now = new Date();
+  children.push(new Paragraph({
+    alignment: AlignmentType.CENTER,
+    spacing:{ before:360 },
+    children:[ new TextRun({ text:`Relatório gerado em ${now.toLocaleDateString('pt-BR')} às ${now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}`, color:'9AA5AC', size:14 }) ]
+  }));
+
+  return new Document({ sections:[{ properties:{}, children }] });
+}
+
+function reportFileName(){
+  const u = state.unit;
+  const place = (u.comarca && u.comarca.trim()) || (u.nome && u.nome.trim()) || 'Fórum';
+  return `Checklist de Correição Predial de ${place}`.replace(/[\/\\:\*\?"<>\|]+/g, '-').trim();
+}
+
+function generateDOCX(){
+  if(typeof docx === 'undefined'){
+    alert('Não foi possível carregar o gerador de DOCX. Verifique sua conexão com a internet e tente novamente.');
+    return;
+  }
+  const doc = buildDocxDocument();
+  docx.Packer.toBlob(doc).then(blob=>{
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${reportFileName()}.docx`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(()=>URL.revokeObjectURL(url), 3000);
+  }).catch(err=>{
+    alert('Erro ao gerar o DOCX: ' + err.message);
+  });
+}
+
+function generatePDF(){
+  document.getElementById('print-report').innerHTML = buildReportHTML();
+  const prevTitle = document.title;
+  document.title = reportFileName();
+  setTimeout(()=>{
+    window.print();
+    setTimeout(()=>{ document.title = prevTitle; }, 1000);
+  }, 150);
+}
+
+function buildReportText(){
+  const u = state.unit;
+  let lines = [];
+  lines.push('CHECKLIST DE INSPEÇÃO PREDIAL');
+  lines.push('='.repeat(32));
+  lines.push(`Comarca: ${u.comarca||'-'}`);
+  lines.push(`Fórum: ${u.nome||'-'}`);
+  lines.push(`Endereço: ${u.endereco||'-'}`);
+  lines.push(`Juiz Diretor do Foro: ${u.juiz||'-'}`);
+  lines.push(`Secretário(a) de gestão: ${u.secretario||'-'}`);
+  const servidoresList = (u.servidoresList || []).filter(v=>v && v.trim());
+  lines.push('Servidores:');
+  if(servidoresList.length){
+    servidoresList.forEach(nome => lines.push(`  - ${nome}`));
+  } else {
+    lines.push('  -');
+  }
+  lines.push(`Data da visita: ${u.data||'-'}`);
+  lines.push('');
+  SECTIONS.forEach(sec=>{
+    lines.push(`${sec.num}. ${sec.title.toUpperCase()}`);
+    lines.push('-'.repeat(32));
+    sec.items.forEach(it=>{
+      const a = state.answers[it.id] || {};
+      if(it.type==='text'){
+        lines.push(`• ${it.q}`);
+        lines.push(`  Resposta: ${a.obs && a.obs.trim() ? a.obs : '(não preenchido)'}`);
+      } else {
+        lines.push(`• ${it.q}`);
+        lines.push(`  Situação: ${a.stamp || '(não respondido)'}`);
+        const extraList = a.extraList ? a.extraList.filter(v=>v && v.trim()) : [];
+        if(extraList.length){
+          lines.push('  Números:');
+          extraList.forEach(v => lines.push(`    - ${v}`));
+        }
+        if(a.obs && a.obs.trim()) lines.push(`  Obs: ${a.obs}`);
+      }
+    });
+    lines.push('');
+  });
+  lines.push('RELATÓRIO FOTOGRÁFICO');
+  lines.push('-'.repeat(32));
+  PHOTO_ITEMS.forEach(p=>{
+    const status = photoStatus(p);
+    const suffix = status === 'confirmado' ? ' (confirmado sem foto)' : '';
+    lines.push(`[${status!=='pendente' ? 'x' : ' '}] ${p}${suffix}`);
+  });
+  return lines.join('\n');
+}
+
+function openReport(){
+  document.getElementById('report-text').textContent = buildReportText();
+  document.getElementById('modal-overlay').classList.add('show');
+}
+function closeReport(){
+  document.getElementById('modal-overlay').classList.remove('show');
+}
+function copyReport(){
+  const text = document.getElementById('report-text').textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    alert('Texto copiado.');
+  }).catch(()=>{
+    alert('Não foi possível copiar automaticamente. Selecione o texto manualmente.');
+  });
+}
+
+loadState();
+</script>
+</body>
+</html>
